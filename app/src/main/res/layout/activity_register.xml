@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="24dp"
+    android:paddingLeft="24dp"
+    tools:context=".RegisterActivity">
+
+
+
+    <EditText
+        android:layout_marginTop="100dp"
+        android:hint="Amizone ID"
+        android:textColorHighlight="#000000"
+        android:id="@+id/etId"
+        android:background="@drawable/shape"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+
+
+    <EditText
+        android:layout_marginTop="50dp"
+        android:hint="Name"
+        android:textColorHighlight="#000000"
+        android:id="@+id/etName"
+        android:background="@drawable/shape"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <EditText
+        android:layout_marginTop="50dp"
+        android:hint="Password"
+        android:textColorHighlight="#000000"
+        android:id="@+id/etPass"
+        android:background="@drawable/shape"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+
+
+    <EditText
+        android:layout_marginTop="50dp"
+        android:hint="Enrollment"
+        android:textColorHighlight="#000000"
+        android:id="@+id/etEnroll"
+        android:background="@drawable/shape"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:text="Sign Up"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btnSignIn"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
