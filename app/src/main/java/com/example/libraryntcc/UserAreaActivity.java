@@ -15,12 +15,11 @@ public class UserAreaActivity extends AppCompatActivity {
         tvName=findViewById(R.id.tvName);
         tvEnroll=findViewById(R.id.tvEnroll);
         String name=getIntent().getStringExtra("name");
-        String id=getIntent().getStringExtra("id");
-        String enroll=getIntent().getStringExtra("enroll");
-        tvId.setText(id);
+        String bid=getIntent().getStringExtra("bid");
+        String bname=getIntent().getStringExtra("bname");
+        tvId.setText(bid);
         tvName.setText(name);
-        tvEnroll.setText(enroll);
-
+        tvEnroll.setText(bname);
 
     }
 }

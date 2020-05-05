@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.libraryntcc">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddBookActivity"></activity>
+        <activity android:name=".DisplayEmployees"></activity>
+        <activity android:name=".DisplayBook" />
+        <activity android:name=".DisplayStudentActivity" />
+        <activity android:name=".AdminMenuActivity" />
+        <activity android:name=".AddBookActivity" />
+        <activity android:name=".AdminLoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity
@@ -25,5 +28,7 @@
         </activity>
         <activity android:name=".MainActivity" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

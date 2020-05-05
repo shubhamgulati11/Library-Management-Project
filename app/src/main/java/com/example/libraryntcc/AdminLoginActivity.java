@@ -1,5 +1,6 @@
 package com.example.libraryntcc;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,54 +23,50 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddBookActivity extends AppCompatActivity {
+public class AdminLoginActivity extends AppCompatActivity {
 
-    EditText etId,etName,etAuthor;
-    Button btnAdd;
-    private static String URL_AddBook="https://ntccproject.000webhostapp.com/connect/AddBook.php";
+    EditText AdminId,AdminPass;
+    Button loginBtn;
+    private static String url="https://ntccproject.000webhostapp.com/connect/AdminLogin.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_book);
-        etId=findViewById(R.id.etId);
-        etName=findViewById(R.id.etName);
-        etAuthor=findViewById(R.id.etAuthor);
-        btnAdd=findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_admin_login);
+        AdminId=findViewById(R.id.AdminId);
+        AdminPass=findViewById(R.id.AdminPass);
+        loginBtn=findViewById(R.id.loginBtn);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("TAG","Add Book button");
-                String id=etId.getText().toString().trim();
-                String name=etName.getText().toString().trim();
-                String author=etAuthor.getText().toString().trim();
-                Log.e("TAG","Author= "+author);
-                AddBook(id,name,author);
+                final String id=AdminId.getText().toString().trim();
+                final String pass=AdminPass.getText().toString().trim();
+                Log.e("TAG","Button Clicked");
+                Log.e("TAG","id= "+id+" pass= "+pass);
+                Login(id,pass);
             }
         });
 
     }
-    private void AddBook(final String id, final String name, final String author){
-        Log.e("TAG","Add Book Function");
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, URL_AddBook, new Response.Listener<String>() {
+    private void Login(final String id, final String pass){
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-                try {
-                    Log.e("TAG","Add Book Response");
+                try{
+                    Log.e("TAG","In function");
                     JSONObject jsonResponse = new JSONObject(response);
-                    Log.e("TAG",""+jsonResponse.toString());
                     String success=jsonResponse.getString("success");
+                    Log.e("TAG",""+success);
+                    Log.e("TAG",""+jsonResponse.toString());
                     if(success.equals("1")){
-                        Toast.makeText(AddBookActivity.this,"Book Added Successfully",Toast.LENGTH_SHORT).show();
-                        etId.setText("");
-                        etName.setText("");
-                        etAuthor.setText("");
+                        Intent i=new Intent(AdminLoginActivity.this, AdminMenuActivity.class);
+                        startActivity(i);
+                    }else{
+                        Toast.makeText(AdminLoginActivity.this,"Wrong Id or Password",Toast.LENGTH_SHORT);
                     }
 
-                } catch (JSONException e) {
+                }catch (JSONException e){
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -79,14 +76,15 @@ public class AddBookActivity extends AppCompatActivity {
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+
                 Map<String,String> params=new HashMap<>();
                 params.put("id",id);
-                params.put("name",name);
-                params.put("author",author);
+                params.put("password",pass);
                 return params;
             }
         };
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+
     }
 }
